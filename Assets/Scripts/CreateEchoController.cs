@@ -9,6 +9,7 @@ public class CreateEchoController : MonoBehaviour
 
     public Transform caneTip;
     public LayerMask echolayer;
+    public GameObject echoWavePrefab;
 
     private float nextEchoTime;
 
@@ -30,7 +31,19 @@ public class CreateEchoController : MonoBehaviour
         nextEchoTime = Time.time + cooldownTime;
 
         Vector3 origin = caneTip != null ? caneTip.position : transform.position;
-        StartCoroutine(ExpandEcho(origin));
+        
+
+        if (echoWavePrefab != null)
+        {
+            GameObject echoWave = Instantiate(echoWavePrefab, origin, Quaternion.identity);
+            EchoWaveVisual waveVisual = echoWave.GetComponent<EchoWaveVisual>();
+            if (waveVisual != null)
+            {
+                waveVisual.expandSpeed = echoSpeed;
+                waveVisual.maxRadius = maxRadius;
+            }
+        }
+        StartCoroutine(ExpandEcho(origin));// Start the coroutine to expand the echo
     }
 
     IEnumerator ExpandEcho(Vector3 origin)

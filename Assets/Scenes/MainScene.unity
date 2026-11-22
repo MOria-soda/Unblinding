@@ -215,6 +215,7 @@ MonoBehaviour:
   echolayer:
     serializedVersion: 2
     m_Bits: 8
+  echoWavePrefab: {fileID: 686563756868689898, guid: 5a48d0bd576f11645a01ba31d2a24eee, type: 3}
 --- !u!1 &330020940
 GameObject:
   m_ObjectHideFlags: 0
